@@ -10,9 +10,8 @@ public class CD {
 	
 	
 	// Konstruktører
-	public CD()
+	public CD() 
 	{
-		
 	}
 	
 	// Mulighet for at cdNr skal være automatisk?

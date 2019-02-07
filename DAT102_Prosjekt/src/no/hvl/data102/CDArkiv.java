@@ -1,5 +1,8 @@
 package no.hvl.data102;
 
+import java.util.Arrays;
+import java.util.Scanner;
+
 import no.hvl.data102.adt.CDarkivADT;
 
 public class CDArkiv implements CDarkivADT {
@@ -28,7 +31,10 @@ public class CDArkiv implements CDarkivADT {
 	@Override
 	// Legger til en ny CD
 	public void leggTilCD(CD nyCD) {
-		// Legg til utvidning?
+		if(antall == cdTabell.length)
+		{
+			utvidKapasitet();
+		}
 		cdTabell[antall] = nyCD;
 		antall++;
 	}
@@ -56,7 +62,22 @@ public class CDArkiv implements CDarkivADT {
 	@Override
 	// Søker og henter artister med gitt delstreng
 	public CD[] sokArtist(String delstreng) {
-		return null;
+
+		CD[] artistTab = new CD[cdTabell.length];
+		
+		int antall = 0;
+		for(int i = 0; i < cdTabell.length; i++)
+		{	
+			//Scanner scanner = new Scanner(cdTabell[i].getPlateSelskap());
+			if(cdTabell[i].getPlateSelskap().contains(delstreng) == true)
+			{
+				artistTab[antall] = cdTabell[i];
+				antall++;
+			}
+						
+		}
+		trimTab(artistTab, antall);
+		return artistTab;
 	}
 	
 	@Override
@@ -89,4 +110,16 @@ public class CDArkiv implements CDarkivADT {
 		 }//while
 		 return cdtab2;
 	}
+	
+	
+	private void utvidKapasitet(){//eks. utvide 10%
+		 CD[] hjelpetabell = new CD[(int)Math.ceil(1.1 *
+		cdTabell.length)];
+		 for (int i = 0; i < cdTabell.length; i++){
+		 hjelpetabell[i] = cdTabell[i];
+		 }
+		 cdTabell = hjelpetabell;
+		}
 }
+
+

@@ -1,5 +1,7 @@
 package no.hvl.data102;
 
+import java.util.Scanner;
+
 import no.hvl.data102.adt.CDarkivADT;
 
 public class Textgrensesnitt {
@@ -9,7 +11,19 @@ public class Textgrensesnitt {
 	// lese opplysningene om en CD fra tastatur
 	 public CD lesCD()
 	 {
-		 return null;
+			String plateselskap, navn;
+			int utgitt = 0;
+			CD cd;
+			//System.out.println("Navn tittel år Sjanger plateselskap");
+			Scanner scanner = new Scanner(System.in);
+			System.out.println("--NY CD--");
+			System.out.print("Navn: ");
+			navn = scanner.nextLine();
+			System.out.print("Plateselskap: ");
+			plateselskap = scanner.nextLine();
+			
+			cd = new CD(1, navn, "tittel", utgitt, Sjanger.JAZZ, plateselskap);
+			return cd;
 	 }
 	 
 	// vise en CD med alle opplysninger på skjerm (husk tekst for sjanger)
@@ -34,7 +48,7 @@ public class Textgrensesnitt {
 	// og hvor mange det er i hver sjanger
 	 public void skrivUtStatistikk(CDarkivADT cda)
 	 {
-		 
+		 System.out.println("Antall CDer: " + cda.antall());
 	 }
 	 
 
